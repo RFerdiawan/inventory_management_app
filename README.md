@@ -7,6 +7,7 @@ An application for inputting items created using Flutter with provider state man
 ## Getting Started
 
 How to run this project
-    - Clone this repository
-    - Open this folder on your IDE, go to terminal and type flutter pub get
-    - Click run on your IDE
+
+    -  Clone this repository
+    -  Open this folder on your IDE, go to terminal and type flutter pub get
+    -  Click run on your IDE
