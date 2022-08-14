@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:inventory_management/pages/dashboard_page.dart';
 import 'package:inventory_management/pages/list_barang_page.dart';
@@ -29,6 +30,8 @@ class _NavigatePageState extends State<NavigatePage> {
 
   @override
   Widget build(BuildContext context) {
+    final user = FirebaseAuth.instance.currentUser!;
+
     return Scaffold(
       body: PageView(
         controller: _pageController,

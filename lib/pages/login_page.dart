@@ -1,14 +1,36 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:inventory_management/pages/navigate_page.dart';
 import 'package:inventory_management/themes.dart';
 import 'package:sizer/sizer.dart';
 
-class LoginPage extends StatelessWidget {
-  final usernameController = TextEditingController();
+class LoginPage extends StatefulWidget {
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  final emailController = TextEditingController();
+
   final passwordController = TextEditingController();
+
   late String nUsername, nPassword;
 
   final _formKey = GlobalKey<FormState>();
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
+
+  Future signIn() async {
+    await FirebaseAuth.instance.signInWithEmailAndPassword(
+      email: emailController.text.trim(),
+      password: passwordController.text.trim(),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -73,18 +95,18 @@ class LoginPage extends StatelessWidget {
                         TextFormField(
                           validator: (value) {
                             if (value!.isEmpty) {
-                              return 'Please Input Username';
+                              return 'Please Input Email';
                             }
                             return null;
                           },
-                          controller: usernameController,
+                          controller: emailController,
                           decoration: InputDecoration(
                             contentPadding: EdgeInsets.symmetric(
                               vertical: 12,
                               horizontal: 18,
                             ),
-                            hintText: 'Masukkan username',
-                            labelText: 'Username',
+                            hintText: 'Masukkan email',
+                            labelText: 'Email',
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(15)),
                           ),
@@ -119,17 +141,14 @@ class LoginPage extends StatelessWidget {
                         ),
                         ElevatedButton(
                           onPressed: () {
-                            nUsername = usernameController.text;
+                            nUsername = emailController.text;
                             nPassword = passwordController.text;
 
                             if (_formKey.currentState!.validate()) {
                               if (nPassword.length < 5) {
                                 print("password tidak sesuai");
                               } else {
-                                Navigator.pushReplacement(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => NavigatePage()));
+                                signIn();
                               }
                             }
                           },

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "521148771277",
+    "project_id": "inma-app",
+    "storage_bucket": "inma-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:521148771277:android:199932162d5a3a7d57b284",
+        "android_client_info": {
+          "package_name": "com.example.inventory_management"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "521148771277-9cc0u6r6trum25volrvhc2kbbnpl1aed.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAPddsXYJXq7Vx62hO5eoTmK4_chkLsazA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "521148771277-9cc0u6r6trum25volrvhc2kbbnpl1aed.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

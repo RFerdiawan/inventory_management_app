@@ -1,7 +1,9 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:inventory_management/pages/dashboard_page.dart';
 import 'package:inventory_management/pages/detail_barang_page.dart';
 import 'package:inventory_management/pages/list_barang_page.dart';
+import 'package:inventory_management/pages/login_page.dart';
 import 'package:inventory_management/pages/navigate_page.dart';
 import 'package:inventory_management/pages/profile_page.dart';
 import 'package:inventory_management/pages/qrscan_page.dart';
@@ -9,7 +11,10 @@ import 'package:inventory_management/pages/splash_page.dart';
 import 'package:inventory_management/providers/barang_provider.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+Future main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+
   runApp(const MyApp());
 }
 

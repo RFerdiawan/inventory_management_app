@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:inventory_management/pages/login_page.dart';
 import 'package:inventory_management/themes.dart';
@@ -8,6 +9,8 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final user = FirebaseAuth.instance.currentUser!;
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Settings'),
@@ -52,7 +55,9 @@ class ProfilePage extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text('Admin'),
+                        Text(
+                          user.email.toString(),
+                        ),
                         SizedBox(
                           height: 18,
                         ),
@@ -187,12 +192,7 @@ class ProfilePage extends StatelessWidget {
               height: 14,
             ),
             InkWell(
-              onTap: () {
-                Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(builder: (builder) => LoginPage()),
-                    (route) => false);
-              },
+              onTap: () => FirebaseAuth.instance.signOut(),
               child: Container(
                 child: Row(
                   children: [

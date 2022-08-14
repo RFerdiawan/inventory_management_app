@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:inventory_management/themes.dart';
 import 'package:sizer/sizer.dart';
@@ -21,6 +22,8 @@ class DashboardPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final user = FirebaseAuth.instance.currentUser!;
+
     return Scaffold(
         appBar: AppBar(
           title: Text('Dashboard'),
@@ -36,7 +39,7 @@ class DashboardPage extends StatelessWidget {
                 ),
                 Container(
                   child: Text(
-                    'Selamat ' + greeting() + ', Admin!',
+                    'Selamat ' + greeting() + ', ' + user.email.toString(),
                     style: greetStyle,
                   ),
                 ),
