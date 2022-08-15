@@ -4,6 +4,8 @@ An application for inputting items created using Flutter with provider state man
 
 ![Inventory Management](https://github.com/RFerdiawan/inventory_management_app/blob/master/assets/Cover.png)
 
+You can quickly access the prototype via https://tinyurl.com/InMaPrototype
+
 ## Getting Started
 
 How to run this project
