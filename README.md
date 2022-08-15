@@ -2,7 +2,7 @@
 
 An application for inputting items created using Flutter with provider state management and working API.
 
-#### Technology
+#### Technologies
 Flutter, Rest API, Firebase, Provider State Management, QR Scanner
 
 ![Inventory Management](https://github.com/RFerdiawan/inventory_management_app/blob/master/assets/Cover.png)
