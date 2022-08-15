@@ -4,21 +4,22 @@ import 'package:inventory_management/pages/navigate_page.dart';
 import 'package:inventory_management/themes.dart';
 import 'package:sizer/sizer.dart';
 
-class LoginPage extends StatefulWidget {
+class RegisterPage extends StatefulWidget {
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<RegisterPage> createState() => _RegisterPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _RegisterPageState extends State<RegisterPage> {
+  //const RegisterPage({Key? key}) : super(key: key);
   final emailController = TextEditingController();
 
   final passwordController = TextEditingController();
 
   late String nUsername, nPassword;
 
-  bool isLoading = false;
-
   final _formKey = GlobalKey<FormState>();
+
+  bool isLoading = false;
 
   @override
   void dispose() {
@@ -27,17 +28,25 @@ class _LoginPageState extends State<LoginPage> {
     super.dispose();
   }
 
-  Future signIn() async {
+  Future signUp() async {
     setState(() {
       isLoading = true;
     });
-    await FirebaseAuth.instance.signInWithEmailAndPassword(
-      email: emailController.text.trim(),
-      password: passwordController.text.trim(),
-    );
+
+    try {
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: emailController.text.trim(),
+        password: passwordController.text.trim(),
+      );
+    } on FirebaseAuthException catch (e) {
+      print(e);
+    }
+
     setState(() {
       isLoading = false;
     });
+    Navigator.pushReplacement(
+        context, MaterialPageRoute(builder: (builder) => NavigatePage()));
   }
 
   @override
@@ -89,32 +98,32 @@ class _LoginPageState extends State<LoginPage> {
                 Container(
                   margin: EdgeInsets.symmetric(horizontal: 18),
                   child: Form(
-                    key: _formKey,
+                    //key: _formKey,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Row(
                           children: [
-                            Text(
-                              'Login',
-                              style: TitleStyle,
-                            ),
-                            SizedBox(
-                              width: 24,
-                            ),
                             TextButton(
                               onPressed: () {
                                 Navigator.pushReplacementNamed(
-                                    context, '/register');
+                                    context, '/login');
                               },
                               child: Text(
-                                'Register',
+                                'Login',
                                 style: TitleStyle.copyWith(
                                   color: Colors.grey,
                                   fontWeight: FontWeight.normal,
                                 ),
                               ),
-                            )
+                            ),
+                            SizedBox(
+                              width: 24,
+                            ),
+                            Text(
+                              'Register',
+                              style: TitleStyle,
+                            ),
                           ],
                         ),
                         SizedBox(
@@ -173,18 +182,9 @@ class _LoginPageState extends State<LoginPage> {
                               )
                             : ElevatedButton(
                                 onPressed: () {
-                                  nUsername = emailController.text;
-                                  nPassword = passwordController.text;
-
-                                  if (_formKey.currentState!.validate()) {
-                                    if (nPassword.length < 5) {
-                                      print("password tidak sesuai");
-                                    } else {
-                                      signIn();
-                                    }
-                                  }
+                                  signUp();
                                 },
-                                child: Text('Login'),
+                                child: Text('Register'),
                                 style: ElevatedButton.styleFrom(
                                   fixedSize: Size(95.w, 40),
                                   shape: RoundedRectangleBorder(

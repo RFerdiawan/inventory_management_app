@@ -7,6 +7,7 @@ import 'package:inventory_management/pages/login_page.dart';
 import 'package:inventory_management/pages/navigate_page.dart';
 import 'package:inventory_management/pages/profile_page.dart';
 import 'package:inventory_management/pages/qrscan_page.dart';
+import 'package:inventory_management/pages/register_page.dart';
 import 'package:inventory_management/pages/splash_page.dart';
 import 'package:inventory_management/providers/barang_provider.dart';
 import 'package:provider/provider.dart';
@@ -52,6 +53,8 @@ class MyApp extends StatelessWidget {
           '/barang': (context) => ListBarangPage(),
           '/profile': (context) => ProfilePage(),
           '/qrscan': (context) => QRScanPage(),
+          '/register': (context) => RegisterPage(),
+          '/login': (context) => LoginPage(),
           //'/detail': (context) => DetailBarangPage(),
         },
       ),
