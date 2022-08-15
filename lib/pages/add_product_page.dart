@@ -25,6 +25,12 @@ class _AddProductPageState extends State<AddProductPage> {
   Widget build(BuildContext context) {
     var barangProvider = Provider.of<BarangProvider>(context);
 
+    if (widget.result != null) {
+      namaController.text = widget.result.toString();
+    } else {
+      namaController.text = namaController.text;
+    }
+
     void showError(String message) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
@@ -65,7 +71,6 @@ class _AddProductPageState extends State<AddProductPage> {
               ),
               TextFormField(
                 controller: namaController,
-                //initialValue: widget.result,
                 decoration: InputDecoration(
                   contentPadding: EdgeInsets.symmetric(
                     vertical: 12,
